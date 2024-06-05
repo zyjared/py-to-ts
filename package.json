@@ -2,7 +2,7 @@
   "name": "packageName",
   "version": "0.0.0",
   "description": "",
-  "repository": "unjs/packageName",
+  "repository": "zyjared/packageName",
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
@@ -16,7 +16,9 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "unbuild",
     "dev": "vitest dev",
@@ -29,17 +31,17 @@
     "test:types": "tsc --noEmit --skipLibCheck"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.7.2",
-    "@types/node": "^20.12.7",
-    "@vitest/coverage-v8": "^1.5.3",
+    "@biomejs/biome": "^1.8.0",
+    "@types/node": "^20.14.2",
+    "@vitest/coverage-v8": "^1.6.0",
     "automd": "^0.3.7",
     "changelogen": "^0.5.5",
-    "eslint": "^9.1.1",
-    "eslint-config-unjs": "^0.3.0-rc.7",
-    "jiti": "^1.21.0",
+    "eslint": "^9.4.0",
+    "eslint-config-unjs": "^0.3.2",
+    "jiti": "^1.21.3",
     "typescript": "^5.4.5",
     "unbuild": "^2.0.0",
-    "vitest": "^1.5.3"
+    "vitest": "^1.6.0"
   },
-  "packageManager": "pnpm@9.0.6"
+  "packageManager": "pnpm@9.1.4"
 }

@@ -2,8 +2,8 @@
 
 <!-- automd:badges color=yellow -->
 
-[![npm version](https://img.shields.io/npm/v/packageName?color=yellow)](https://npmjs.com/package/packageName)
-[![npm downloads](https://img.shields.io/npm/dm/packageName?color=yellow)](https://npmjs.com/package/packageName)
+[![npm version](https://img.shields.io/npm/v/@zyjared/packageName?color=)](https://npmjs.com/package/@zyjared/packageName)
+[![npm downloads](https://img.shields.io/npm/dm/packageName?color=)](https://npmjs.com/package/packageName)
 
 <!-- /automd -->
 
