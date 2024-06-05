@@ -1,15 +1,3 @@
-import unjs from "eslint-config-unjs";
+import antfu from '@antfu/eslint-config'
 
-export default unjs({
-  ignores: [
-    // ignore paths
-  ],
-  rules: {
-    // rule overrides
-  },
-  markdown: {
-    rules: {
-      // markdown rule overrides
-    },
-  },
-});
+export default antfu()
