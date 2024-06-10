@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "packageManager": "pnpm@9.1.4",
   "description": "",
+  "author": "Jared Zhang <zyjared@outlook.com> (https://github.com/zyjared/)",
   "license": "MIT",
   "repository": "zyjared/packageName",
   "sideEffects": false,
