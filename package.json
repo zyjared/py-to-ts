@@ -1,26 +1,13 @@
 {
-  "name": "@zyjared/packagename",
+  "name": "py-to-ts",
   "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@9.1.4",
   "description": "",
   "author": "Jared Zhang <zyjared@outlook.com> (https://github.com/zyjared/)",
   "license": "MIT",
-  "repository": "zyjared/packageName",
   "sideEffects": false,
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+
   "scripts": {
     "build": "unbuild",
     "dev": "vitest dev",

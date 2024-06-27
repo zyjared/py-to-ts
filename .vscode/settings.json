@@ -52,16 +52,12 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "vue",
     "html",
     "markdown",
     "json",
     "jsonc",
     "yaml",
     "toml",
-    "xml",
-    "gql",
-    "graphql",
-    "astro"
+    "xml"
   ]
 }
