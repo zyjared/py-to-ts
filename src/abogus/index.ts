@@ -120,26 +120,67 @@ export class ABogus {
     this.reg = ABogus.__reg.slice()
   }
 
-  public static list_1(random_num: BigInteger | null = null, a = bigInt(170), b = bigInt(85), c = bigInt(45)) {
-    return ABogus.random_list(random_num, a, b, bigInt(1), bigInt(2), bigInt(5), c.and(a))
+  public static list_1(
+    random_num: BigInteger | null = null,
+    a = bigInt(170),
+    b = bigInt(85),
+    c = bigInt(45),
+  ) {
+    return ABogus.random_list(
+      random_num,
+      a,
+      b,
+      bigInt(1),
+      bigInt(2),
+      bigInt(5),
+      c.and(a),
+    )
   }
 
-  public static list_2(random_num: BigInteger | null = null, a = bigInt(170), b = bigInt(85)) {
-    return ABogus.random_list(random_num, a, b, bigInt(1), bigInt.zero, bigInt.zero, bigInt.zero)
+  public static list_2(
+    random_num: BigInteger | null = null,
+    a = bigInt(170),
+    b = bigInt(85),
+  ) {
+    return ABogus.random_list(
+      random_num,
+      a,
+      b,
+      bigInt(1),
+      bigInt.zero,
+      bigInt.zero,
+      bigInt.zero,
+    )
   }
 
-  public static list_3(random_num: BigInteger | null = null, a = bigInt(170), b = bigInt(85)) {
-    return ABogus.random_list(random_num, a, b, bigInt(1), bigInt.zero, bigInt(5), bigInt.zero)
+  public static list_3(
+    random_num: BigInteger | null = null,
+    a = bigInt(170),
+    b = bigInt(85),
+  ) {
+    return ABogus.random_list(
+      random_num,
+      a,
+      b,
+      bigInt(1),
+      bigInt.zero,
+      bigInt(5),
+      bigInt.zero,
+    )
   }
 
-  public static random_list(a: BigInteger | null = null, b = bigInt(170), c = bigInt(85), d = bigInt.zero, e = bigInt.zero, f = bigInt.zero, g = bigInt.zero) {
+  public static random_list(
+    a: BigInteger | null = null,
+    b = bigInt(170),
+    c = bigInt(85),
+    d = bigInt.zero,
+    e = bigInt.zero,
+    f = bigInt.zero,
+    g = bigInt.zero,
+  ) {
     const r = a !== null ? a : bigInt(Math.floor(Math.random() * 10000))
 
-    const v: BigInteger[] = [
-      r,
-      r.and(bigInt(255)),
-      r.shiftRight(bigInt(8)),
-    ]
+    const v: BigInteger[] = [r, r.and(bigInt(255)), r.shiftRight(bigInt(8))]
 
     let s = v[1].and(b).or(d)
     v.push(s)
@@ -161,9 +202,11 @@ export class ABogus {
     random_num_2: BigInteger | null = null,
     random_num_3: BigInteger | null = null,
   ) {
-    return ABogus.from_char_code(...ABogus.list_1(random_num_1))
+    return (
+      ABogus.from_char_code(...ABogus.list_1(random_num_1))
       + ABogus.from_char_code(...ABogus.list_2(random_num_2))
       + ABogus.from_char_code(...ABogus.list_3(random_num_3))
+    )
   }
 
   generate_string_2(
@@ -172,7 +215,12 @@ export class ABogus {
     start_time = 0,
     end_time = 0,
   ) {
-    const a = this.generate_string_2_list(url_params, user_agent, start_time, end_time)
+    const a = this.generate_string_2_list(
+      url_params,
+      user_agent,
+      start_time,
+      end_time,
+    )
     const e = ABogus.end_check_num(a)
     a.push(...ABogus.__env)
     a.push(e)
@@ -182,30 +230,65 @@ export class ABogus {
   generate_string_2_list(
     url_params: string,
     user_agent: string,
-    start_time: number = 0,
-    end_time: number = 0,
+    start_time = 0,
+    end_time = 0,
   ) {
     const start = start_time ? bigInt(start_time) : bigInt(Date.now())
-    const end = end_time ? bigInt(end_time) : (start.add(bigInt(Math.floor(Math.random() * 5) + 4)))
+    const end = end_time
+      ? bigInt(end_time)
+      : start.add(bigInt(Math.floor(Math.random() * 5) + 4))
 
     const params_array = this.sum(this.sum(url_params))
 
     // TODO: 需要编写一个函数来生成ua_code 2024年6月13日17:13:08
     // Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36
-    const ua_code = [76, 98, 15, 131, 97, 245, 224, 133, 122, 199, 241, 166, 79, 34, 90, 191, 128, 126, 122, 98, 66, 11, 14, 40, 49, 110, 110, 173, 67, 96, 138, 252].map(el => bigInt(el))
+    const ua_code = [
+      76,
+      98,
+      15,
+      131,
+      97,
+      245,
+      224,
+      133,
+      122,
+      199,
+      241,
+      166,
+      79,
+      34,
+      90,
+      191,
+      128,
+      126,
+      122,
+      98,
+      66,
+      11,
+      14,
+      40,
+      49,
+      110,
+      110,
+      173,
+      67,
+      96,
+      138,
+      252,
+    ].map(el => bigInt(el))
     return ABogus.list_4(
-      (end.shiftRight(24)).and(bigInt(255)),
+      end.shiftRight(24).and(bigInt(255)),
       bigInt(params_array[21]),
       ua_code[23],
-      (end.shiftRight(16)).and(bigInt(255)),
+      end.shiftRight(16).and(bigInt(255)),
       bigInt(params_array[22]),
       ua_code[24],
-      (end.shiftRight(8)).and(bigInt(255)),
-      (end.shiftRight(0)).and(bigInt(255)),
-      (start.shiftRight(24)).and(bigInt(255)),
-      (start.shiftRight(16)).and(bigInt(255)),
-      (start.shiftRight(8)).and(bigInt(255)),
-      (start.shiftRight(0)).and(bigInt(255)),
+      end.shiftRight(8).and(bigInt(255)),
+      end.shiftRight(0).and(bigInt(255)),
+      start.shiftRight(24).and(bigInt(255)),
+      start.shiftRight(16).and(bigInt(255)),
+      start.shiftRight(8).and(bigInt(255)),
+      start.shiftRight(0).and(bigInt(255)),
     )
   }
 
@@ -230,18 +313,24 @@ export class ABogus {
     const i = this.reg.slice()
     for (let _o = 0; _o < 64; _o++) {
       const o = bigInt(_o)
-      let c = ABogus.de(i[0], bigInt(12)).add(i[4]).add(ABogus.de(ABogus.pe(o), o))
+      let c = ABogus.de(i[0], bigInt(12))
+        .add(i[4])
+        .add(ABogus.de(ABogus.pe(o), o))
 
       c = c.and(bigInt('0xFFFFFFFF'))
       c = ABogus.de(c, bigInt(7))
 
-      const s = (c.xor(ABogus.de(i[0], bigInt(12)))).and(bigInt('0xFFFFFFFF'))
+      const s = c.xor(ABogus.de(i[0], bigInt(12))).and(bigInt('0xFFFFFFFF'))
 
       let u = ABogus.he(o, i[0], i[1], i[2])
-      u = u.add(i[3]).add(s).add(f[_o + 68]).and(bigInt('0xFFFFFFFF'))
+      u = u
+        .add(i[3])
+        .add(s)
+        .add(f[_o + 68])
+        .and(bigInt('0xFFFFFFFF'))
 
       let b = ABogus.ve(o, i[4], i[5], i[6])
-      b = (b.add(i[7]).add(c).add(f[_o])).and(bigInt('0xFFFFFFFF'))
+      b = b.add(i[7]).add(c).add(f[_o]).and(bigInt('0xFFFFFFFF'))
 
       i[3] = i[2]
       i[2] = ABogus.de(i[1], bigInt(9))
@@ -251,11 +340,14 @@ export class ABogus {
       i[7] = i[6]
       i[6] = ABogus.de(i[5], bigInt(19))
       i[5] = i[4]
-      i[4] = bigInt(b).xor(ABogus.de(b, bigInt(9))).xor(ABogus.de(b, bigInt(17))).and(bigInt('0xFFFFFFFF'))
+      i[4] = bigInt(b)
+        .xor(ABogus.de(b, bigInt(9)))
+        .xor(ABogus.de(b, bigInt(17)))
+        .and(bigInt('0xFFFFFFFF'))
     }
 
     for (let l = 0; l < 8; l++) {
-      this.reg[l] = (this.reg[l].xor(i[l])).and(bigInt('0xFFFFFFFF'))
+      this.reg[l] = this.reg[l].xor(i[l]).and(bigInt('0xFFFFFFFF'))
     }
   }
 
@@ -263,18 +355,25 @@ export class ABogus {
     const r = Array.from({ length: 132 }).fill(bigInt.zero) as BigInteger[]
 
     for (let t = 0; t < 16; t++) {
-      r[t] = (e[4 * t].shiftLeft(bigInt(24))).or(e[4 * t + 1].shiftLeft(bigInt(16))).or(e[4 * t + 2].shiftLeft(8)).or(e[4 * t + 3])
+      r[t] = e[4 * t]
+        .shiftLeft(bigInt(24))
+        .or(e[4 * t + 1].shiftLeft(bigInt(16)))
+        .or(e[4 * t + 2].shiftLeft(8))
+        .or(e[4 * t + 3])
       r[t] = r[t].and(bigInt('0xFFFFFFFF'))
     }
 
     for (let n = 16; n < 68; n++) {
       let a = r[n - 16].xor(r[n - 9]).xor(this.de(r[n - 3], bigInt(15)))
       a = a.xor(this.de(a, bigInt(15))).xor(this.de(a, bigInt(23)))
-      r[n] = (a.xor(this.de(r[n - 13], bigInt(7))).xor(r[n - 6])).and(bigInt('0xFFFFFFFF'))
+      r[n] = a
+        .xor(this.de(r[n - 13], bigInt(7)))
+        .xor(r[n - 6])
+        .and(bigInt('0xFFFFFFFF'))
     }
 
     for (let n = 68; n < 132; n++) {
-      r[n] = (r[n - 68].xor(r[n - 64])).and(bigInt('0xFFFFFFFF'))
+      r[n] = r[n - 68].xor(r[n - 64]).and(bigInt('0xFFFFFFFF'))
     }
 
     return r
@@ -355,7 +454,7 @@ export class ABogus {
       0,
       0,
       0,
-    ].map(el => typeof el === 'number' ? bigInt(el) : el)
+    ].map(el => (typeof el === 'number' ? bigInt(el) : el))
   }
 
   static end_check_num(a: BigInteger[]) {
@@ -376,29 +475,32 @@ export class ABogus {
 
   static de(e: BigInteger, r: BigInteger) {
     r = r.mod(bigInt(32))
-    return e.shiftLeft(bigInt(r)).and(bigInt('0xFFFFFFFF')).xor(e.shiftRight(bigInt(32).subtract(r)))
+    return e
+      .shiftLeft(bigInt(r))
+      .and(bigInt('0xFFFFFFFF'))
+      .xor(e.shiftRight(bigInt(32).subtract(r)))
   }
 
   static pe(e: BigInteger) {
-    return (e.greaterOrEquals(bigInt.zero) && e.lesser(bigInt(16))) ? bigInt('2043430169') : bigInt('2055708042')
+    return e.greaterOrEquals(bigInt.zero) && e.lesser(bigInt(16))
+      ? bigInt('2043430169')
+      : bigInt('2055708042')
   }
 
   static he(e: BigInteger, r: BigInteger, t: BigInteger, n: BigInteger) {
     if (e.geq(0) && e.lt(16))
       return r.xor(t).xor(n).and(bigInt('0xFFFFFFFF'))
     else if (e.geq(16) && e.lt(64))
-      return (r.and(t)).or(r.and(n)).or(t.and(n)).and(bigInt('0xFFFFFFFF'))
-    else
-      throw new Error('Invalid value for e')
+      return r.and(t).or(r.and(n)).or(t.and(n)).and(bigInt('0xFFFFFFFF'))
+    else throw new Error('Invalid value for e')
   }
 
   static ve(e: BigInteger, r: BigInteger, t: BigInteger, n: BigInteger) {
     if (e.geq(0) && e.lt(16))
       return r.xor(t).xor(n).and(bigInt('0xFFFFFFFF'))
     else if (e.geq(16) && e.lt(64))
-      return (r.and(t)).or(r.not().and(n)).and(bigInt('0xFFFFFFFF'))
-    else
-      throw new Error('Invalid value for e')
+      return r.and(t).or(r.not().and(n)).and(bigInt('0xFFFFFFFF'))
+    else throw new Error('Invalid value for e')
   }
 
   /**
@@ -484,7 +586,10 @@ export class ABogus {
   static generate_result(s: any, n: any, e: keyof typeof ABogus.__str = 's4') {
     let r = ''
     for (let i = 0; i < n; i++) {
-      const b = ((s.charCodeAt(i * 3) << 16) | (s.charCodeAt(i * 3 + 1) << 8) | s.charCodeAt(i * 3 + 2))
+      const b
+        = (s.charCodeAt(i * 3) << 16)
+        | (s.charCodeAt(i * 3 + 1) << 8)
+        | s.charCodeAt(i * 3 + 2)
       r += ABogus.generate_result_unit(b, e)
     }
     return r
@@ -548,9 +653,17 @@ export class ABogus {
       random_num_3 === null ? null : bigInt(random_num_3),
     )
 
-    const str_2 = this.generate_string_2(new URLSearchParams(url_params).toString(), user_agent, start_time, end_time)
+    const str_2 = this.generate_string_2(
+      new URLSearchParams(url_params).toString(),
+      user_agent,
+      start_time,
+      end_time,
+    )
     const str = str_1 + str_2
 
-    return ABogus.generate_result(str, 40, 's4') + ABogus.generate_result_end(str, 's4')
+    return (
+      ABogus.generate_result(str, 40, 's4')
+      + ABogus.generate_result_end(str, 's4')
+    )
   }
 }
