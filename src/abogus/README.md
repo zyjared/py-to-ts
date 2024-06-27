@@ -1,3 +1,24 @@
+# abogus
+
+```py
+"""
+Original Author:
+This file is from https://github.com/JoeanAmier/TikTokDownloader
+And is licensed under the GNU General Public License v3.0
+If you use this code, please keep this license and the original author information.
+
+Modified by:
+And this file is now a part of the https://github.com/Evil0ctal/Douyin_TikTok_Download_API open-source project.
+This project is licensed under the Apache License 2.0, and the original author information is kept.
+
+Purpose:
+This file is used to generate the `a_bogus` parameter for the Douyin Web API.
+
+Changes Made:
+1. Changed the ua_code to compatible with the current config file User-Agent string in https://github.com/Evil0ctal/Douyin_TikTok_Download_API/blob/main/crawlers/douyin/web/config.yaml
+"""
+```
+
 ## 依赖
 
 - [big-integer](https://www.npmjs.com/package/big-integer)
@@ -25,7 +46,7 @@ bun install big-integer
   - 区别在于如果是整数，可能需要使用 `bigInt()` 得到 `BigInteger` 类型
 
 ```mjs
-import { ABogus } from '文件位置'
+import ABogus from 'abogus'
 
 const bogus = new ABogus()
 

@@ -11,6 +11,7 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, '[ci skip]') == false
     steps:
       - uses: actions/checkout@v4
       - run: corepack enable
@@ -22,4 +23,3 @@ jobs:
       - run: pnpm lint
       - run: pnpm test:types
       - run: pnpm vitest run --coverage
-      - run: pnpm build

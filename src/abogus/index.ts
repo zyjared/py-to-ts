@@ -19,7 +19,7 @@
 import type { BigInteger } from 'big-integer'
 import bigInt from 'big-integer'
 
-export class ABogus {
+export default class ABogus {
   private static __filter = /%([0-9A-F]{2})/
   private static __arguments = [0, 1, 14]
   private static __end_string = 'cus'

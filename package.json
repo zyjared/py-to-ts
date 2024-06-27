@@ -12,6 +12,7 @@
     "dev": "vitest dev",
     "lint": "eslint",
     "lint:fix": "eslint . --fix",
+    "test:vitest": "vitest",
     "test:types": "tsc --noEmit --skipLibCheck",
     "test": "pnpm lint && pnpm test:types && pnpm vitest run --coverage"
   },

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { ABogus } from '../../src/abogus'
+import ABogus from '../../src/abogus'
 import result from './data.json'
 
 describe('abogus', () => {
