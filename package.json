@@ -30,7 +30,11 @@
     "play": "jiti playground",
     "release": "pnpm test && changelogen --release && npm publish && git push --follow-tags",
     "test": "pnpm lint && pnpm test:types && vitest run --coverage",
+    "test:vitest": "vitest",
     "test:types": "tsc --noEmit --skipLibCheck"
+  },
+  "dependencies": {
+    "big-integer": "^1.6.52"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.20.0",

@@ -1,94 +1,45 @@
-# packageName
+## 依赖
 
-<!-- automd:badges color=yellow -->
-
-[![npm version](https://img.shields.io/npm/v/@zyjared/packageName?color=)](https://npmjs.com/package/@zyjared/packageName)
-[![npm downloads](https://img.shields.io/npm/dm/packageName?color=)](https://npmjs.com/package/packageName)
-
-<!-- /automd -->
-
-This is my package description.
-
-## Usage
-
-Install package:
-
-<!-- automd:pm-install -->
+- [big-integer](https://www.npmjs.com/package/big-integer)
 
 ```sh
-# ✨ Auto-detect
-npx nypm install packageName
-
 # npm
-npm install packageName
+npm install big-integer
 
 # yarn
-yarn add packageName
+yarn add big-integer
 
 # pnpm
-pnpm install packageName
+pnpm install big-integer
 
 # bun
-bun install packageName
+bun install big-integer
 ```
 
-<!-- /automd -->
+## 使用
 
-Import:
+- 默认带类型提示
+- 方法名和 py 版本保持一致
+- 一部分方法参数类型和 py 版本有区别
+  - 可以查看 `.d.ts` 文件
+  - 区别在于如果是整数，可能需要使用 `bigInt()` 得到 `BigInteger` 类型
 
-<!-- automd:jsimport cjs cdn name="pkg" -->
+```mjs
+import { ABogus } from '文件位置'
 
-**ESM** (Node.js, Bun)
+const bogus = new ABogus()
 
-```js
-import {} from 'pkg'
+const USERAGENT: string = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'
+const url_str: string = 'https://www.douyin.com/aweme/v1/web/aweme/detail/?device_platform=webapp&aid=6383&channel=channel_pc_web&pc_client_type=1&version_code=190500&version_name=19.5.0&cookie_enabled=true&browser_language=zh-CN&browser_platform=Win32&browser_name=Firefox&browser_online=true&engine_name=Gecko&os_name=Windows&os_version=10&platform=PC&screen_width=1920&screen_height=1080&browser_version=124.0&engine_version=122.0.0.0&cpu_core_num=12&device_memory=8&aweme_id=7345492945006595379'
+
+// 将url参数转换为字典
+const url_params: Record<string, string> = Object.fromEntries(url_str.split('?')[1].split('&').map(param => param.split('=')))
+
+console.log(`URL参数: ${JSON.stringify(url_params)}`)
+const _a_bogus = bogus.get_value(url_params, USERAGENT, 1, 1, 1, 1, 1)
+
+// 使用url编码a_bogus
+const a_bogus = encodeURIComponent(_a_bogus)
+console.log(a_bogus)
+console.log(USERAGENT)
 ```
-
-**CommonJS** (Legacy Node.js)
-
-```js
-const {} = require('pkg')
-```
-
-**CDN** (Deno, Bun and Browsers)
-
-```js
-import {} from 'https://esm.sh/pkg'
-```
-
-<!-- /automd -->
-
-## Development
-
-<details>
-
-<summary>local development</summary>
-
-- Clone this repository
-- Install latest LTS version of [Node.js](https://nodejs.org/en/)
-- Enable [Corepack](https://github.com/nodejs/corepack) using `corepack enable`
-- Install dependencies using `pnpm install`
-- Run interactive tests using `pnpm dev`
-
-</details>
-
-## License
-
-<!-- automd:contributors license=MIT -->
-
-Published under the [MIT](https://github.com/unjs/packageName/blob/main/LICENSE) license.
-Made by [community](https://github.com/unjs/packageName/graphs/contributors) 💛
-<br><br>
-<a href="https://github.com/unjs/packageName/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=unjs/packageName" />
-</a>
-
-<!-- /automd -->
-
-<!-- automd:with-automd -->
-
----
-
-_🤖 auto updated with [automd](https://automd.unjs.io)_
-
-<!-- /automd -->

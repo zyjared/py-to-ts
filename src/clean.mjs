@@ -16,7 +16,6 @@
  * 2. Converted Python code to TypeScript.
  */
 
-import type { BigInteger } from 'big-integer'
 import bigInt from 'big-integer'
 
 export class ABogus {
@@ -110,9 +109,9 @@ export class ABogus {
     s4: 'Dkdpgh2ZmsQB80/MfvV36XI1R45-WUAlEixNLwoqYTOPuzKFjJnry79HbGcaStCe',
   }
 
-  private chunk: number[]
-  private size: number
-  private reg: BigInteger[]
+  private chunk
+  private size
+  private reg
 
   constructor() {
     this.chunk = []
@@ -120,27 +119,25 @@ export class ABogus {
     this.reg = ABogus.__reg.slice()
   }
 
-  public static list_1(random_num: BigInteger | null = null, a = bigInt(170), b = bigInt(85), c = bigInt(45)) {
+  static list_1(random_num = null, a = bigInt(170), b = bigInt(85), c = bigInt(45)) {
     return ABogus.random_list(random_num, a, b, bigInt(1), bigInt(2), bigInt(5), c.and(a))
   }
 
-  public static list_2(random_num: BigInteger | null = null, a = bigInt(170), b = bigInt(85)) {
+  static list_2(random_num = null, a = bigInt(170), b = bigInt(85)) {
     return ABogus.random_list(random_num, a, b, bigInt(1), bigInt.zero, bigInt.zero, bigInt.zero)
   }
 
-  public static list_3(random_num: BigInteger | null = null, a = bigInt(170), b = bigInt(85)) {
+  static list_3(random_num = null, a = bigInt(170), b = bigInt(85)) {
     return ABogus.random_list(random_num, a, b, bigInt(1), bigInt.zero, bigInt(5), bigInt.zero)
   }
 
-  public static random_list(a: BigInteger | null = null, b = bigInt(170), c = bigInt(85), d = bigInt.zero, e = bigInt.zero, f = bigInt.zero, g = bigInt.zero) {
-    const r = a !== null ? a : bigInt(Math.floor(Math.random() * 10000))
-
-    const v: BigInteger[] = [
+  static random_list(a = null, b = bigInt(170), c = bigInt(85), d = bigInt.zero, e = bigInt.zero, f = bigInt.zero, g = bigInt.zero) {
+    const r = a !== null ? a : bigInt(Math.random() * 10000)
+    const v = [
       r,
       r.and(bigInt(255)),
       r.shiftRight(bigInt(8)),
     ]
-
     let s = v[1].and(b).or(d)
     v.push(s)
     s = v[1].and(c).or(e)
@@ -152,14 +149,14 @@ export class ABogus {
     return v.slice(-4)
   }
 
-  public static from_char_code(...args: BigInteger[]) {
+  static from_char_code(...args) {
     return args.map(code => String.fromCharCode(code.toJSNumber())).join('')
   }
 
   static generate_string_1(
-    random_num_1: BigInteger | null = null,
-    random_num_2: BigInteger | null = null,
-    random_num_3: BigInteger | null = null,
+    random_num_1 = null,
+    random_num_2 = null,
+    random_num_3 = null,
   ) {
     return ABogus.from_char_code(...ABogus.list_1(random_num_1))
       + ABogus.from_char_code(...ABogus.list_2(random_num_2))
@@ -167,8 +164,8 @@ export class ABogus {
   }
 
   generate_string_2(
-    url_params: string,
-    user_agent: string,
+    url_params,
+    user_agent,
     start_time = 0,
     end_time = 0,
   ) {
@@ -180,10 +177,10 @@ export class ABogus {
   }
 
   generate_string_2_list(
-    url_params: string,
-    user_agent: string,
-    start_time: number = 0,
-    end_time: number = 0,
+    url_params,
+    user_agent,
+    start_time = 0,
+    end_time = 0,
   ) {
     const start = start_time ? bigInt(start_time) : bigInt(Date.now())
     const end = end_time ? bigInt(end_time) : (start.add(bigInt(Math.floor(Math.random() * 5) + 4)))
@@ -209,8 +206,8 @@ export class ABogus {
     )
   }
 
-  static reg_to_array(a: BigInteger[]) {
-    const o = Array.from({ length: 32 }).fill(bigInt.zero) as BigInteger[]
+  static reg_to_array(a) {
+    const o = Array.from({ length: 32 }).fill(bigInt.zero)
     for (let i = 0; i < 8; i++) {
       let c = a[i]
       o[4 * i + 3] = bigInt(255).and(c)
@@ -225,7 +222,7 @@ export class ABogus {
     return o
   }
 
-  compress(a: number[]) {
+  compress(a) {
     const f = ABogus.generate_f(a.map(el => bigInt(el)))
     const i = this.reg.slice()
     for (let _o = 0; _o < 64; _o++) {
@@ -259,8 +256,8 @@ export class ABogus {
     }
   }
 
-  static generate_f(e: BigInteger[]) {
-    const r = Array.from({ length: 132 }).fill(bigInt.zero) as BigInteger[]
+  static generate_f(e) {
+    const r = Array.from({ length: 132 }).fill(bigInt.zero)
 
     for (let t = 0; t < 16; t++) {
       r[t] = (e[4 * t].shiftLeft(bigInt(24))).or(e[4 * t + 1].shiftLeft(bigInt(16))).or(e[4 * t + 2].shiftLeft(8)).or(e[4 * t + 3])
@@ -280,7 +277,7 @@ export class ABogus {
     return r
   }
 
-  static pad_array(arr: number[], length = 60) {
+  static pad_array(arr, length = 60) {
     while (arr.length < length) {
       arr.push(0)
     }
@@ -297,18 +294,18 @@ export class ABogus {
   }
 
   static list_4(
-    a: BigInteger,
-    b: BigInteger,
-    c: BigInteger,
-    d: BigInteger,
-    e: BigInteger,
-    f: BigInteger,
-    g: BigInteger,
-    h: BigInteger,
-    i: BigInteger,
-    j: BigInteger,
-    k: BigInteger,
-    m: BigInteger,
+    a,
+    b,
+    c,
+    d,
+    e,
+    f,
+    g,
+    h,
+    i,
+    j,
+    k,
+    m,
   ) {
     return [
       44,
@@ -358,7 +355,7 @@ export class ABogus {
     ].map(el => typeof el === 'number' ? bigInt(el) : el)
   }
 
-  static end_check_num(a: BigInteger[]) {
+  static end_check_num(a) {
     let r = bigInt.zero
     for (const i of a) {
       r = r.xor(i)
@@ -366,24 +363,24 @@ export class ABogus {
     return r
   }
 
-  static decode_string(url_string: string) {
+  static decode_string(url_string) {
     return url_string.replace(ABogus.__filter, ABogus.replace_func)
   }
 
-  static replace_func(_match: string, p1: string) {
+  static replace_func(_match, p1) {
     return String.fromCharCode(Number.parseInt(p1, 16))
   }
 
-  static de(e: BigInteger, r: BigInteger) {
+  static de(e, r) {
     r = r.mod(bigInt(32))
     return e.shiftLeft(bigInt(r)).and(bigInt('0xFFFFFFFF')).xor(e.shiftRight(bigInt(32).subtract(r)))
   }
 
-  static pe(e: BigInteger) {
+  static pe(e) {
     return (e.greaterOrEquals(bigInt.zero) && e.lesser(bigInt(16))) ? bigInt('2043430169') : bigInt('2055708042')
   }
 
-  static he(e: BigInteger, r: BigInteger, t: BigInteger, n: BigInteger) {
+  static he(e, r, t, n) {
     if (e.geq(0) && e.lt(16))
       return r.xor(t).xor(n).and(bigInt('0xFFFFFFFF'))
     else if (e.geq(16) && e.lt(64))
@@ -392,7 +389,7 @@ export class ABogus {
       throw new Error('Invalid value for e')
   }
 
-  static ve(e: BigInteger, r: BigInteger, t: BigInteger, n: BigInteger) {
+  static ve(e, r, t, n) {
     if (e.geq(0) && e.lt(16))
       return r.xor(t).xor(n).and(bigInt('0xFFFFFFFF'))
     else if (e.geq(16) && e.lt(64))
@@ -404,27 +401,27 @@ export class ABogus {
   /**
    * 将字符串处理为字符对应的 Unicode 数组
    */
-  static convert_to_char_code(a: string) {
-    const d: number[] = []
+  static convert_to_char_code(a) {
+    const d = []
     for (let i = 0; i < a.length; i++) {
       d.push(a.charCodeAt(i))
     }
     return d
   }
 
-  static split_array(arr: any[], chunk_size = 64) {
-    const result: number[][] = []
+  static split_array(arr, chunk_size = 64) {
+    const result = []
     for (let i = 0; i < arr.length; i += chunk_size) {
       result.push(arr.slice(i, i + chunk_size))
     }
     return result
   }
 
-  static char_code_at(s: string) {
+  static char_code_at(s) {
     return s.split('').map(char => char.charCodeAt(0))
   }
 
-  write(e: string | any[]) {
+  write(e) {
     if (typeof e === 'string') {
       e = ABogus.decode_string(e + ABogus.__end_string)
       e = ABogus.char_code_at(e)
@@ -448,7 +445,7 @@ export class ABogus {
     this.reg = ABogus.__reg.slice()
   }
 
-  sum(e: string | any[], length = 60) {
+  sum(e, length = 60) {
     this.reset()
     this.write(e)
     this.fill(length)
@@ -458,7 +455,7 @@ export class ABogus {
     return a.map(el => el.toJSNumber())
   }
 
-  static generate_result_unit(n: number, s: keyof typeof ABogus.__str) {
+  static generate_result_unit(n, s: keyof typeof ABogus.__str) {
     let r = ''
     const masks = [16515072, 258048, 4032, 63]
     const shifts = [18, 12, 6, 0]
@@ -470,7 +467,7 @@ export class ABogus {
     return r
   }
 
-  static generate_result_end(s: string, e: keyof typeof ABogus.__str = 's4') {
+  static generate_result_end(s, e: keyof typeof ABogus.__str = 's4') {
     let r = ''
     const b = s.charCodeAt(120) << 16
 
@@ -491,7 +488,7 @@ export class ABogus {
   }
 
   static generate_args_code() {
-    const a: number[] = []
+    const a = []
 
     for (let j = 24; j >= 0; j -= 8) {
       a.push(ABogus.__arguments[0] >> j)
@@ -509,7 +506,7 @@ export class ABogus {
     return a.map(i => Math.floor(i) & 255)
   }
 
-  static rc4_encrypt(plaintext: string, key: string) {
+  static rc4_encrypt(plaintext, key) {
     const s = Array.from({ length: 256 }, (_, i) => i)
     let j = 0
 
@@ -520,32 +517,33 @@ export class ABogus {
     }
     let i = 0
     j = 0
-    const cipher: string[] = []
+    const cipher = []
 
     // Pseudo-Random Generation Algorithm (PRGA)
     for (let k = 0; k < plaintext.length; k++) {
       i = (i + 1) % 256
       j = (j + s[i]) % 256;
       [s[i], s[j]] = [s[j], s[i]]
-      const t: number = (s[i] + s[j]) % 256
+      const t = (s[i] + s[j]) % 256
       cipher.push(String.fromCharCode(s[t] ^ plaintext.charCodeAt(k)))
     }
     return cipher.join('')
   }
 
   get_value(
-    url_params: Record<string, any>,
-    user_agent: string,
+    url_params,
+    user_agent,
     start_time = 0,
     end_time = 0,
-    random_num_1: number | null = null,
-    random_num_2: number | null = null,
-    random_num_3: number | null = null,
+    random_num_1 = null,
+    random_num_2 = null,
+    random_num_3 = null,
   ) {
+    const unset = v => v === null || v === undefined
     const str_1 = ABogus.generate_string_1(
-      random_num_1 === null ? null : bigInt(random_num_1),
-      random_num_2 === null ? null : bigInt(random_num_2),
-      random_num_3 === null ? null : bigInt(random_num_3),
+      unset(random_num_1) ? null : bigInt(random_num_1),
+      unset(random_num_2) ? null : bigInt(random_num_2),
+      unset(random_num_3) ? null : bigInt(random_num_3),
     )
 
     const str_2 = this.generate_string_2(new URLSearchParams(url_params).toString(), user_agent, start_time, end_time)
